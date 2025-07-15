@@ -1,0 +1,827 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 57,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "d386f9c2-8040-4455-b287-ef95ee3070e8"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<img src=\"https://upload.wikimedia.org/wikipedia/commons/2/20/Asterisk_logo.svg\" width=\"250\" height=\"150\" />",
+        "mode": "html"
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "d386f9c2-8040-4455-b287-ef95ee3070e8"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "host": {
+            "filter": ""
+          },
+          "item": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "a37ae461-5665-41c6-ad02-9c0887e127c2"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "fieldMinMax": true,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ATENDIDAS"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "shades"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "OCUPADO"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "shades"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FALHAS"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "shades"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CONGESTIONADO"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "shades"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SEM RESPOSTA"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffdd00",
+                  "mode": "shades"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 21,
+        "x": 3,
+        "y": 0
+      },
+      "id": 4,
+      "interval": "1m",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/.*/",
+          "values": false
+        },
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "dataset": "asteriskcdrdb",
+          "datasource": {
+            "type": "mysql",
+            "uid": "a37ae461-5665-41c6-ad02-9c0887e127c2"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select count(*) as 'ATENDIDAS' from cdr where disposition = 'ANSWERED';",
+          "refId": "C",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "cdr"
+        },
+        {
+          "dataset": "asteriskcdrdb",
+          "datasource": {
+            "type": "mysql",
+            "uid": "a37ae461-5665-41c6-ad02-9c0887e127c2"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select count(*) as 'SEM RESPOSTA' from cdr where disposition = 'NO ANSWER';",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "cdr"
+        },
+        {
+          "dataset": "asteriskcdrdb",
+          "datasource": {
+            "type": "mysql",
+            "uid": "a37ae461-5665-41c6-ad02-9c0887e127c2"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select count(*) as 'CONGESTIONADO' from cdr where disposition = 'CONGESTION';",
+          "refId": "B",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "cdr"
+        },
+        {
+          "dataset": "asteriskcdrdb",
+          "datasource": {
+            "type": "mysql",
+            "uid": "a37ae461-5665-41c6-ad02-9c0887e127c2"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select count(*) AS 'OCUPADO' from cdr where disposition = 'BUSY';",
+          "refId": "D",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "cdr"
+        },
+        {
+          "dataset": "asteriskcdrdb",
+          "datasource": {
+            "type": "mysql",
+            "uid": "a37ae461-5665-41c6-ad02-9c0887e127c2"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select count(*) AS 'FALHAS' from cdr where disposition = 'FAILED';",
+          "refId": "E",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          },
+          "table": "cdr"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "a08ce08c-8232-4dc9-ad55-1f7e89c38d24"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "color-background"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "offline": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "OFFLINE"
+                },
+                "online": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "ONLINE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 22,
+        "w": 4,
+        "x": 0,
+        "y": 5
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "resource",
+              "text": "RAMAIS",
+              "type": "number"
+            },
+            {
+              "selector": "state",
+              "text": "STATUS",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "a08ce08c-8232-4dc9-ad55-1f7e89c38d24"
+          },
+          "filters": [
+            {
+              "field": "RAMAIS",
+              "operator": "notequals",
+              "value": [
+                "null"
+              ]
+            },
+            {
+              "field": "STATUS",
+              "operator": "equals",
+              "value": [
+                "offline"
+              ]
+            }
+          ],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "json_options": {
+            "columnar": false
+          },
+          "parser": "simple",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://zabbix:zabbix@voip.ipaam.am.gov.br:8088/ari/endpoints",
+          "url_options": {
+            "data": "",
+            "headers": [],
+            "method": "GET",
+            "params": []
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "a08ce08c-8232-4dc9-ad55-1f7e89c38d24"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "Ring": {
+                  "color": "blue",
+                  "index": 1,
+                  "text": "Chamando"
+                },
+                "Up": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Em Ligação"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "Nenhuma Ligação no Momento",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "basic",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "palette-classic"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 20,
+        "x": 4,
+        "y": 5
+      },
+      "id": 7,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "columns": [],
+          "computed_columns": [],
+          "data": "map(select(.dialplan.context == \"from-internal\") | {\n  Origem: .caller.number,\n  Destino: .connected.number,\n  Estado: .state\n})\n",
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "a08ce08c-8232-4dc9-ad55-1f7e89c38d24"
+          },
+          "filterExpression": "",
+          "filters": [
+            {
+              "field": "LIGANDO",
+              "operator": "notequals",
+              "value": [
+                "null"
+              ]
+            }
+          ],
+          "format": "table",
+          "global_query_id": "",
+          "groq": "*",
+          "json_options": {
+            "root_is_not_array": true
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "map(select(.dialplan.context == \"from-internal\") | {\n  Origem: .caller.number,\n  Destino: .connected.number,\n  Estado: .state\n})\n",
+          "source": "url",
+          "summarizeAlias": "",
+          "summarizeBy": "",
+          "type": "uql",
+          "uql": "parse-json\n| where \"dialplan.app_name\" == 'Dial'\n| project \"Origem Nome\"=\"caller.name\", \"Origem Número\"=\"caller.number\", \"Destino Nome\"=\"connected.name\", \"Destino Número\"=\"connected.number\", \"Estado\"=\"state\"",
+          "url": "http://zabbix:zabbix@voip.ipaam.am.gov.br:8088/ari/channels",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "CHAMADAS EM ANDAMENTO",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "a37ae461-5665-41c6-ad02-9c0887e127c2"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "ANSWERED": {
+                  "index": 0,
+                  "text": "ATENDIDAS"
+                },
+                "BUSY": {
+                  "index": 2,
+                  "text": "OCUPADO"
+                },
+                "CONGESTION": {
+                  "index": 3,
+                  "text": "CONGESTIONADO"
+                },
+                "FAILED": {
+                  "index": 4,
+                  "text": "FALHOU"
+                },
+                "NO ANSWER": {
+                  "index": 1,
+                  "text": "SEM RESPOSTA"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "Nenhuma Ligação Hoje",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Estado"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "ANSWERED": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "ATENDIDA"
+                      },
+                      "BUSY": {
+                        "color": "orange",
+                        "index": 2,
+                        "text": "OCUPADO"
+                      },
+                      "CONGESTION": {
+                        "color": "#686868",
+                        "index": 3,
+                        "text": "CONGESTIONADO"
+                      },
+                      "FAILED": {
+                        "color": "red",
+                        "index": 4,
+                        "text": "FALHOU"
+                      },
+                      "NO ANSWER": {
+                        "color": "yellow",
+                        "index": 1,
+                        "text": "SEM REPOSTA"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 20,
+        "x": 4,
+        "y": 15
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.2.0",
+      "targets": [
+        {
+          "dataset": "asterisk",
+          "datasource": {
+            "type": "mysql",
+            "uid": "a37ae461-5665-41c6-ad02-9c0887e127c2"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n    DATE_FORMAT(calldate, '%d/%m/%Y - %H:%i:%s') AS 'DATA LIGAÇÃO',\n    src as Origem,\n    dst as Destino,\n    disposition as Estado\nFROM cdr\nWHERE DATE(calldate) = CURDATE()\nORDER BY calldate DESC;\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "LIGAÇÕES",
+      "type": "table"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "VOIP - ISSABEL",
+  "uid": "f610d36f-cc6d-43cd-919f-98e6b7b48dbc",
+  "version": 56,
+  "weekStart": ""
+}
